@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2023_04_04_145937) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
+    t.string "author"
     t.text "plot"
     t.integer "rating"
     t.date "date_completed"

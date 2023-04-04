@@ -11,28 +11,45 @@
       </div>
     <% end %>
   
-    <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title %>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :title %>
+          <%= form.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :author %>
+          <%= form.text_field :author, class: 'form-control' %>
+        </div>
+      </div>
     </div>
   
-    <div class="field">
+    <div class="form-group">
       <%= form.label :plot %>
-      <%= form.text_area :plot %>
+      <%= form.text_area :plot, class: 'form-control' %>
     </div>
   
-    <div class="field">
-      <%= form.label :rating %>
-      <%= form.number_field :rating, in: 1..10 %>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :rating %>
+          <%= form.number_field :rating, class: 'form-control' %>
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :date_completed %>
+          <%= form.date_field :date_completed, class: 'form-control' %>
+        </div>
+      </div>
     </div>
   
-    <div class="field">
-      <%= form.label :date_completed %>
-      <%= form.date_field :date_completed %>
-    </div>
-  
-    <div class="actions">
-      <%= form.submit %>
+    <div class="form-group">
+      <%= form.submit class: 'btn btn-primary' %>
     </div>
   <% end %>
   

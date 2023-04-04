@@ -1,11 +1,12 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" class="alert alert-info"><%= notice %></p>
 
-<h1>Books</h1>
+<h1 class="mb-4">Books</h1>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
+      <th>Author</th>
       <th>Plot</th>
       <th>Rating</th>
       <th>Date Completed</th>
@@ -17,12 +18,13 @@
     <% @books.each do |book| %>
       <tr>
         <td><%= book.title %></td>
+        <td><%= book.author %></td>
         <td><%= book.plot %></td>
         <td><%= book.rating %></td>
         <td><%= book.date_completed %></td>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', book, class: 'btn btn-info' %></td>
+        <td><%= link_to 'Edit', edit_book_path(book), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'New Book', new_book_path, class: 'btn btn-primary' %>
