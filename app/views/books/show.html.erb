@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @book.title %></h1>
+
+<p>
+  <strong>Plot:</strong>
+  <%= @book.plot %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @book.rating %>
+</p>
+
+<p>
+  <strong>Date Completed:</strong>
+  <%= @book.date_completed %>
+</p>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', books_path %>
