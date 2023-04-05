@@ -1,2 +1,5 @@
 class Book < ApplicationRecord
-end
+    # Add your existing validations, if any, and include the following line
+    validates :rating, inclusion: { in: 1..10, message: "must be between 1 and 10" }
+  end
+  

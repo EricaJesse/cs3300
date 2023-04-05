@@ -1,5 +1,11 @@
-<h1 class="mb-4">Edit Book</h1>
 
-<%= render 'form', book: @book %>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Edit Book</h1>
+
+  <%= render 'form', book: @book %>
 
 <%= link_to 'Home', books_path, class: 'btn btn-info' %>
+
+</div>

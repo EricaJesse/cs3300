@@ -1,8 +1,13 @@
-<p id="notice" class="alert alert-info"><%= notice %></p>
+<div class="container">
+  
+<% if notice.present? %>
+  <p id="notice" class="alert alert-info"><%= notice %></p>
+<% end %>
 
-<h1 class="mb-4">Books</h1>
 
-<table class="table table-striped">
+  <h1>Books</h1>
+
+  <table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
@@ -19,7 +24,7 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= book.author %></td>
-        <td><%= book.plot %></td>
+        <td><%= truncate(book.plot, length: 100) %></td>
         <td><%= book.rating %></td>
         <td><%= book.date_completed %></td>
         <td><%= link_to 'Show', book, class: 'btn btn-info' %></td>
@@ -33,3 +38,6 @@
 <br>
 
 <%= link_to 'New Book', new_book_path, class: 'btn btn-primary' %>
+
+
+</div>
