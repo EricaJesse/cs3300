@@ -1,13 +1,37 @@
 @import "~bootstrap/scss/bootstrap";
 
-// Dark mode styles
-body.dark-mode {
-  background-color: #333;
-  color: #f1f1f1;
+.dark-mode {
+  background-color: #1c1c1c;
+
+  // Change the color of all text elements to light
+  * {
+    color: #ffffff;
+  }
+
+  // Change link colors
+  a {
+    &:hover {
+      color: #a1a1a1;
+    }
+  }
+  
+  // Change table background and border colors
+  table {
+    background-color: #1c1c1c;
+    border-color: #1c1c1c;
+    th, td {
+      border-color: #2d2d2d;
+    }
+  }
+
+  // Change button background colors
+  .btn {
+    background-color: #2d2d2d;
+    border-color: #2d2d2d;
+    &:hover {
+      background-color: #3d3d3d;
+      border-color: #3d3d3d;
+    }
+  }
 }
 
-.dark-mode a {
-  color: #6db8ff;
-}
-
-// Add any other dark mode styles as needed

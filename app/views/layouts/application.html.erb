@@ -4,18 +4,18 @@
     <title>Book Tracker</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
 
   <body>
-    <div class="container mt-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center py-3">
+        <h1 class="mb-0">Book Tracker</h1>
+        <button id="dark-mode-toggle" class="btn btn-secondary">Toggle Dark Mode</button>
+      </div>
       <%= yield %>
     </div>
   </body>
 </html>
-
-<button id="dark-mode-toggle">Toggle Dark Mode</button>
-
