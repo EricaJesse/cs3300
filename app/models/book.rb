@@ -3,3 +3,9 @@ class Book < ApplicationRecord
     validates :rating, inclusion: { in: 1..10, message: "must be between 1 and 10" }
   end
   
+
+  class Book < ApplicationRecord
+    has_many :characters, dependent: :destroy
+    # ...
+  end
+  

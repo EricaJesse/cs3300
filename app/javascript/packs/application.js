@@ -23,3 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
+  document.addEventListener("turbolinks:load", function() {
+    let addCharacter = document.getElementById("add_character");
+    let characterFields = document.querySelector(".nested-fields");
+  
+    addCharacter.addEventListener("click", function(e) {
+      e.preventDefault();
+      let newFields = characterFields.cloneNode(true);
+      let form = document.querySelector("form");
+      form.insertBefore(newFields, addCharacter);
+    });
+  
+    document.addEventListener("click", function(e) {
+      if (e.target && e.target.classList.contains("remove_record")) {
+        e.preventDefault();
+        e.target.parentElement.remove();
+      }
+    });
+  });
+  

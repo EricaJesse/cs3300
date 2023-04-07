@@ -7,6 +7,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @book.characters.build # Add this line to build an initial empty character
   end
 
   def create
@@ -27,6 +28,7 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @book.characters.build if @book.characters.empty? # Add this line to build an initial empty character if there are no characters
   end
 
   def update
@@ -56,6 +58,7 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author, :plot, :rating, :date_completed)
+    params.require(:book).permit(:title, :author, :plot, :rating, :date_completed, characters_attributes: [:name, :description])
   end
+  
 end
