@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+ .dark-mode {
+    background-color: #222;
+    color: #f8f9fa;
+  }
+  
+  .dark-mode .table {
+    color: #f8f9fa;
+  }
+  
+  .dark-mode .btn {
+    border-color: #f8f9fa;
+  }
+  
