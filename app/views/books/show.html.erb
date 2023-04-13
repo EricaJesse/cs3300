@@ -24,6 +24,7 @@
     </div>
   </div>
   
+  <%= link_to 'Add Character', new_book_character_path(@book), class: 'btn btn-primary' %>
   <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-warning' %> |
   <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %> |
   <%= link_to 'Home', books_path, class: 'btn btn-info' %>
