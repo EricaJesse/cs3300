@@ -11,55 +11,32 @@
     </div>
   <% end %>
 
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :title %>
-        <%= form.text_field :title, class: 'form-control' %>
-      </div>
-    </div>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
 
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :author %>
-        <%= form.text_field :author, class: 'form-control' %>
-      </div>
-    </div>
+  <div class="form-group">
+    <%= form.label :author %>
+    <%= form.text_field :author, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :plot %>
-    <%= form.text_area :plot, class: 'form-control' %>
-  </div>
-
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <div class="form-group">
-      <%= form.label :rating, class: 'form-label' %>
-      <%= form.number_field :rating, min: 1, max: 10, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :date_completed %>
-        <%= form.date_field :date_completed, class: 'form-control' %>
-      </div>
-    </div>
+    <%= form.text_area :plot, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.label :rating %>
+    <%= form.number_field :rating, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= form.label :characters, 'Characters' %>
-    <%= form.fields_for :characters do |character| %>
-      <%= render 'character_fields', f: character %>
-  <% end %>
-  <div class="link" id="add_character">
-    <%= link_to 'Add character', '#', class: 'btn btn-info' %>
+    <%= form.label :date_completed %>
+    <%= form.date_field :date_completed, class: "form-control" %>
   </div>
-</div>
 
+  <div class="form-group">
+    <%= form.submit book.new_record? ? 'Create Book' : 'Update Book', class: "btn btn-primary mt-3" %>
+  </div>
 <% end %>

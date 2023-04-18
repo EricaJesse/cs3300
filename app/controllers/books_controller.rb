@@ -1,9 +1,16 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+
 
   def index
-    @books = Book.all
+    if user_signed_in?
+      @books = current_user.books
+    else
+      @books = Book.all
+    end
   end
+  
 
   def new
     @book = Book.new
@@ -11,7 +18,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.new(book_params)
 
     respond_to do |format|
       if @book.save
