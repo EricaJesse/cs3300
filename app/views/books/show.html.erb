@@ -5,11 +5,7 @@
   <div class="row">
     <div class="col-md-6">
       <p><strong>Author:</strong> <%= @book.author %></p>
-      <p>
-        <strong>Plot:</strong>
-        <span id="plot" class="hidden"><%= @book.plot %></span>
-        <button id="togglePlot" class="btn btn-secondary">Show More</button>
-      </p>
+      <p><strong>Plot:</strong> <%= @book.plot %></p>
       <p><strong>Rating:</strong> <%= @book.rating %></p>
       <p><strong>Date Completed:</strong> <%= @book.date_completed %></p>
     </div>
@@ -20,11 +16,10 @@
           <li class="list-group-item">
             <strong>Name:</strong> <%= character.name %><br>
             <% if character.description.present? %>
-              <strong>Description:</strong>
-              <span id="character-description-<%= character.id %>" class="hidden">
-                <%= character.description %>
-              </span>
-              <button id="toggleCharacterDescription-<%= character.id %>" class="btn btn-secondary">Show More</button>
+              <strong>Description:</strong> <%= character.description %>
+            <% end %>
+            <% if user_signed_in? && current_user == @book.user %>
+              <%= link_to 'Edit', edit_book_character_path(@book, character), class: 'btn btn-sm btn-warning' %>
             <% end %>
           </li>
         <% end %>

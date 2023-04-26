@@ -9,5 +9,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :books, only: [:index]
   end
+
+  resources :books do
+    resources :characters, only: [:new, :create, :edit, :update]
+  end
+  
   
 end

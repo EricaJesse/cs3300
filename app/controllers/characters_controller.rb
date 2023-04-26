@@ -4,6 +4,30 @@ class CharactersController < ApplicationController
     def new
       @character = @book.characters.new
     end
+
+    def edit
+      @book = Book.find(params[:book_id])
+      @character = @book.characters.find(params[:id])
+    end
+
+    def update
+      @book = Book.find(params[:book_id])
+      @character = @book.characters.find(params[:id])
+  
+      if @character.update(character_params)
+        flash[:notice] = "Character successfully updated"
+        redirect_to book_path(@book)
+      else
+        flash[:alert] = "Error updating character"
+        render 'edit'
+      end
+    end
+  
+    private
+  
+    def character_params
+      params.require(:character).permit(:name, :description)
+    end
   
     def create
       @character = @book.characters.new(character_params)
@@ -23,6 +47,22 @@ class CharactersController < ApplicationController
   
     def character_params
       params.require(:character).permit(:name, :description)
+    end
+  end
+  
+  def edit
+    @book = Book.find(params[:book_id])
+    @character = @book.characters.find(params[:id])
+  end
+  
+  def update
+    @book = Book.find(params[:book_id])
+    @character = @book.characters.find(params[:id])
+  
+    if @character.update(character_params)
+      redirect_to book_path(@book), notice: 'Character was successfully updated.'
+    else
+      render :edit
     end
   end
   
