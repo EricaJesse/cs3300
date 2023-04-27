@@ -73,3 +73,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // Toggle plot visibility
+    const plot = document.getElementById("plot");
+    const togglePlotButton = document.getElementById("togglePlot");
+  
+    if (togglePlotButton) {
+      togglePlotButton.addEventListener("click", function() {
+        plot.classList.toggle("hidden");
+        togglePlotButton.textContent = plot.classList.contains("hidden") ? "Show More" : "Show Less";
+      });
+    }
+  
+    // Toggle character description visibility
+    const toggleCharacterButtons = document.querySelectorAll("[id^='toggleCharacterDescription-']");
+  
+    toggleCharacterButtons.forEach(function(button) {
+      const characterId = button.id.split("-")[1];
+      const characterDescription = document.getElementById(`character-description-${characterId}`);
+  
+      button.addEventListener("click", function() {
+        characterDescription.classList.toggle("hidden");
+        button.textContent = characterDescription.classList.contains("hidden") ? "Show More" : "Show Less";
+      });
+    });
+  });
+  

@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-6">
       <p><strong>Author:</strong> <%= @book.author %></p>
-      <p><strong>Plot:</strong> <%= @book.plot %></p>
+      <p><strong>Plot:</strong> <span class="plot-content"><%= @book.plot %></span> <a href="#" class="btn btn-sm btn-info show-more" data-content="plot">Show more</a></p>
       <p><strong>Rating:</strong> <%= @book.rating %></p>
       <p><strong>Date Completed:</strong> <%= @book.date_completed %></p>
     </div>
@@ -16,7 +16,7 @@
           <li class="list-group-item">
             <strong>Name:</strong> <%= character.name %><br>
             <% if character.description.present? %>
-              <strong>Description:</strong> <%= character.description %>
+            <strong>Description:</strong> <span class="character-content"><%= character.description %></span> <a href="#" class="btn btn-sm btn-info show-more" data-content="character">Show more</a>
             <% end %>
             <% if user_signed_in? && current_user == @book.user %>
               <%= link_to 'Edit', edit_book_character_path(@book, character), class: 'btn btn-sm btn-warning' %>
@@ -32,3 +32,33 @@
   <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %> |
   <%= link_to 'Home', books_path, class: 'btn btn-info' %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const plotContent = document.querySelector(".plot-content");
+    const characterContents = document.querySelectorAll(".character-content");
+    const showMoreLinks = document.querySelectorAll(".show-more");
+    
+    plotContent.style.display = "none";
+    characterContents.forEach(content => {
+      content.style.display = "none";
+    });
+
+    showMoreLinks.forEach(link => {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+        const contentType = this.dataset.content;
+        
+        if (contentType === "plot") {
+          plotContent.style.display = plotContent.style.display === "none" ? "inline" : "none";
+        } else {
+          const characterContent = this.previousElementSibling;
+          characterContent.style.display = characterContent.style.display === "none" ? "inline" : "none";
+        }
+        
+        // Toggle the link text between "Show more" and "Show less"
+        this.textContent = this.textContent === "Show more" ? "Show less" : "Show more";
+      });
+    });
+  });
+</script>
