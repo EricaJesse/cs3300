@@ -2,6 +2,12 @@
 require "rails_helper"
 
 RSpec.describe BooksController, :type => :controller do
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
+
   describe "GET #index" do
     it "returns a success response" do
       get :index
@@ -10,7 +16,7 @@ RSpec.describe BooksController, :type => :controller do
   end
 
   describe "GET #show" do
-    let!(:book) { Book.create(title: "Test title", author: "Test author", plot: "Test plot", rating: 5, date_completed: "2022-01-01") }
+    let!(:book) { Book.create(title: "Test title", author: "Test author", plot: "Test plot", rating: 5, date_completed: "2022-01-01", user: user) }
     it "returns a success response" do
       get :show, params: { id: book.id }
       expect(response).to have_http_status(:ok)

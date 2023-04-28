@@ -2,6 +2,10 @@
 require "rails_helper"
 
 RSpec.feature "Books", type: :feature do
+
+  let(:user) { create(:user) }
+  let(:book) { Book.create(title: "Test title", author: "Test author", plot: "Test plot", rating: 5, date_completed: "2022-01-01", user: user) }
+
   context "Login" do
     scenario "should sign up" do
       visit root_path
@@ -12,7 +16,10 @@ RSpec.feature "Books", type: :feature do
         fill_in "Password confirmation", with: "123456"
         click_button "Sign up"
       end
-      expect(page).to have_content("Welcome! You have signed up successfully.")
+      element = find(:xpath, "//*[contains(@class, 'alert') and text()[contains(., 'Welcome! You have signed up successfully.')]]")
+      expect(element).to have_text("Welcome! You have signed up successfully.")
+      
+
     end
 
     scenario "should log in" do
@@ -20,6 +27,8 @@ RSpec.feature "Books", type: :feature do
       login_as(user)
       visit root_path
       expect(page).to have_content("Logged in")
+
+      
     end
   end
 
@@ -40,6 +49,7 @@ RSpec.feature "Books", type: :feature do
       end
       click_button "Create Book"
       expect(page).to have_content("Book was successfully created")
+
     end
 
     scenario "should fail when plot is blank" do
@@ -52,6 +62,7 @@ RSpec.feature "Books", type: :feature do
       end
       click_button "Create Book"
       expect(page).to have_content("Plot can't be blank")
+
     end
 
     scenario "should fail when title is blank" do
@@ -64,11 +75,12 @@ RSpec.feature "Books", type: :feature do
       end
       click_button "Create Book"
       expect(page).to have_content("Title can't be blank")
+
     end
   end
 
   context "Update book" do
-    let(:book) { Book.create(title: "Test title", author: "Test author", plot: "Test plot", rating: 5, date_completed: "2022-01-01") }
+    let(:book) { Book.create(title: "Test title", author: "Test author", plot: "Test plot", rating: 5, date_completed: "2022-01-01", user: user) }
     before(:each) do
       user = FactoryBot.create(:user)
       login_as(user)

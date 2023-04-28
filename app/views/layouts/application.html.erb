@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name %>">
+      <%= msg %>
+    </div>
+  <% end %>
+  
+  <% flash.each do |key, value| %>
+    <div class="alert <%= key %>">
+      <%= value %>
+    </div>
+  <% end %>
+  
+
     <title>Book Tracker</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

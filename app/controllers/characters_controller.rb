@@ -5,6 +5,10 @@ class CharactersController < ApplicationController
       @character = @book.characters.new
     end
 
+    def index
+      @characters = @book.characters
+    end
+
     def edit
       @book = Book.find(params[:book_id])
       @character = @book.characters.find(params[:id])
@@ -27,6 +31,10 @@ class CharactersController < ApplicationController
   
     def character_params
       params.require(:character).permit(:name, :description)
+    end
+
+    def set_book
+      @book = current_user.books.find(params[:book_id])
     end
   
     def create
